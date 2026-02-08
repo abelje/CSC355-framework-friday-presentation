@@ -1,0 +1,15 @@
+.logo.js {
+    width: 50%;
+    height: 50%;
+}
+.largeCenteredRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+.mediumRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
