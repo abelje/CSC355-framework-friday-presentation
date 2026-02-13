@@ -1,4 +1,4 @@
-# Presentation on Anime.js
+# Framework Friday: Anime.JS
 1. Use timer attribute to have an active timer for the entire class period
 ## Steps to Install
 1. ```npm install vite --save-dev```
@@ -12,6 +12,15 @@
    }
    ```
 4. Run website using ```npm run dev```.
+
+## Strengths
+1. Very modular in use of imports, callbacks, and methods.
+2. Access to a lot of different Animations.
+3. Great Documentation on the website.
+
+## Weaknesses
+1. Verbose, Hard to understand at first.
+2. 
 
 ## Objects
 You can find objects that anime.js has by using their website: [https://animejs.com/documentation](https://animejs.com/documentation).
@@ -39,6 +48,32 @@ You can find objects that anime.js has by using their website: [https://animejs.
           </fieldset>
       </div>
       ```
+
+- Draggable
+    - Adds draggable items to DOM Elements
+    - Create the Draggable Item using ```createDraggable(target, parameters)```
+        - Has axes parameters such as:
+            - locking x and y directions
+
+                ```js
+                import { createDraggable } from 'animejs';
+      
+                createDraggable('.square.enabled', {
+                  x: true
+                });
+              
+                createDraggable('.square.disabled', {
+                  x: false
+                });
+                ```        
+
+            - snapping to an area
+            - mapping to an area
+    - Methods
+        - enable, disable
+        - setX, setY
+        - reset, stop, revert
+
 - Timer
     - createTimer:
       ```js
@@ -110,31 +145,6 @@ You can find objects that anime.js has by using their website: [https://animejs.
     .add('.triangle', { x: '15rem', rotate: '1turn' }, '<-=500');
     ```
     
-- Draggable
-  - Adds draggable items to DOM Elements
-  - Create the Draggable Item using ```createDraggable(target, parameters)```
-    - Has axes parameters such as:
-      - locking x and y directions
-      
-          ```js
-          import { createDraggable } from 'animejs';
-
-          createDraggable('.square.enabled', {
-            x: true
-          });
-        
-          createDraggable('.square.disabled', {
-            x: false
-          });
-          ```        
-
-      - snapping to an area
-      - mapping to an area
-  - Methods
-    - enable, disable
-    - setX, setY
-    - reset, stop, revert
-
 - SVG support
 - Text
   - ```splitText```

@@ -5,7 +5,7 @@ const [ $button ] = utils.$('button');
 let rotations = 0;
 
 // Created a bounce animation loop
-animate('.logo.js', {
+animate('', {
     scale: [
         { to: 1.25, ease: 'inOut(3)', duration: 200 },
         { to: 1, ease: spring({ bounce: .7 }) }
@@ -15,10 +15,7 @@ animate('.logo.js', {
 });
 
 // Make the logo draggable around its center
-createDraggable('.logo.js', {
-    container: [0, 0, 0, 0],
-    releaseEase: spring({ bounce: .7 })
-});
+
 
 // Animate logo rotation on click
 const rotateLogo = () => {
@@ -31,7 +28,7 @@ const rotateLogo = () => {
     });
 }
 
-$button.addEventListener('click', rotateLogo);
+
 
 // animation example
 const { chars } = splitText('h2', { words: false, chars: true });
@@ -57,28 +54,22 @@ animate(chars, {
 
 const [ $timer01, $timer02, $timer03 ] = utils.$('.timer');
 
-const timer1 = createTimer({
-    duration: 1500,
-    onUpdate: self => $timer01.innerHTML = self.currentTime,
-});
+// create Timer
+
 
 const tl = createTimeline()
-    .sync(timer1)
+    .sync()
     .add({
-        duration: 500,
-        onUpdate: self => $timer02.innerHTML = self.currentTime,
+
     })
     .add({
-        onUpdate: self => $timer03.innerHTML = self.currentTime,
-        duration: 1000
+
 });
 
+// set button to reset timer timeline
 const [ $reset ] = utils.$('.reset');
 const resetTimeline = () => {
-    tl.restart();
-    $timer01.innerHTML = timer1.currentTime;
-    $timer02.innerHTML = timer1.currentTime;
-    $timer03.innerHTML = timer1.currentTime;
+
 }
 
 $reset.addEventListener('click', resetTimeline);
