@@ -1,4 +1,4 @@
-import { animate, utils, createDraggable, spring } from 'animejs';
+import { createTimeline, createTimer, animate, stagger, splitText, utils, createDraggable, spring } from 'animejs';
 
 const [ $logo ] = utils.$('.logo.js');
 const [ $button ] = utils.$('button');
@@ -32,3 +32,53 @@ const rotateLogo = () => {
 }
 
 $button.addEventListener('click', rotateLogo);
+
+// animation example
+const { chars } = splitText('h2', { words: false, chars: true });
+
+animate(chars, {
+    // Property keyframes
+    y: [
+        { to: '-2.75rem', ease: 'outExpo', duration: 600 },
+        { to: 0, ease: 'outBounce', duration: 800, delay: 100 }
+    ],
+    // Property specific parameters
+    rotate: {
+        from: '-1turn',
+        delay: 0
+    },
+    delay: stagger(50),
+    ease: 'inOutCirc',
+    loopDelay: 1000,
+    loop: true
+});
+
+// Timeline example
+
+const [ $timer01, $timer02, $timer03 ] = utils.$('.timer');
+
+const timer1 = createTimer({
+    duration: 1500,
+    onUpdate: self => $timer01.innerHTML = self.currentTime,
+});
+
+const tl = createTimeline()
+    .sync(timer1)
+    .add({
+        duration: 500,
+        onUpdate: self => $timer02.innerHTML = self.currentTime,
+    })
+    .add({
+        onUpdate: self => $timer03.innerHTML = self.currentTime,
+        duration: 1000
+});
+
+const [ $reset ] = utils.$('.reset');
+const resetTimeline = () => {
+    tl.restart();
+    $timer01.innerHTML = timer1.currentTime;
+    $timer02.innerHTML = timer1.currentTime;
+    $timer03.innerHTML = timer1.currentTime;
+}
+
+$reset.addEventListener('click', resetTimeline);
